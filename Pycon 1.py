@@ -223,7 +223,31 @@ def DBDepreciation():
         print('Book Value is: ', bv)
         print('Depreciation charge is: ', dep)
 
+        
+    time.sleep(2)
+    main()
     
+    
+    
+def CapRecFactor():
+
+    print('\nInsert 1 if not used')
+    time.sleep(1)
+    
+    P = float(input('Input purchase price/capital investment (P):'))
+    A = float(input('Input annnuity (S):'))
+    i = float(input('Input input interest rate (i):'))/100 
+    N = int(input('Input number of periods (N):'))
+    
+    if A == 1:
+        A = P*i*(1 + i)**N/(i*(1 + i)**N - 1)
+        print('\n~~~~~~~~~~~~~ANSWER~~~~~~~~~~~~~~~~~')
+        print('\nAnnuity is', A,'\N{DOLLAR SIGN}')
+    
+    if P == 1:
+        P = A*(i*(1 + i)**N - 1)/(i*(1 + i)**N)
+        print('\nCaptial Investment is', P,'\N{DOLLAR SIGN}')
+
     
     
     
@@ -236,45 +260,72 @@ def main():
         while running:
             fnc = int(input('Enter to call a function:\n'
                         '1 - Rate Manipulation\n' 
-                        '2 - Simple Interest\n'
-                        '3 - Compound Interest\n'
-                        '4 - Nominal Compound Interest\n'
-                        '5 - Continuous Interest\n'
-                        '6 - SL Dep\n'
-                        '7 - DB Dep\n'
-                        '9 - Exit\n'))
+                        '21 - Simple Interest\n'
+                        '22 - Compound Interest\n'
+                        '23 - Nominal Compound Interest\n'
+                        '24 - Continuous Interest\n'
+                        '61 - SL Depreciation\n'
+                        '62 - DB Depreciation\n'
+                        '~~~~~~Annuity~~~~~~\n'
+                        '81 - Sink Fund Factor\n'
+                        '82 - Uni Series Comp Amount Factor\n'
+                        '83 - Capital Recover Factor\n'
+                        '84 - Equivalent Annual Capital (EAC)\n'
+                        '85 - Series Present Worth Factor\n'
+                        '00 - Exit\n'))
             if fnc ==1:
                 print('\nCalled Rate Manipulator!\n')
                 rateManipulation()
                 running = False
-            if fnc ==2:
+            if fnc ==21:
                 print('\nCalled Simple Interest!\n')
                 simpleInterest()
                 running = False
-            if fnc ==3:
+            if fnc ==22:
                 print('\nCalled Compound Interest!\n') 
                 compoundInterest()
                 running = False
-            if fnc ==4:
+            if fnc ==23:
                 print('\nCalled Nominal Effective Comppound Interest!\n')
                 nomeffInterest()
                 running = False
-            if fnc ==5:
+            if fnc ==24:
                 print('\nCalled Continuous Interest!\n')
                 contInterest()
                 running = False
-            if fnc ==6:
-                print('\nCalled SL Dep!\n')
+            if fnc ==61:
+                print('\nCalled SL Depreciation!\n')
                 SLDepreciation()
                 running = False
-            if fnc ==7:
-                print('\nCalled DB Dep!\n')
+            if fnc ==62:
+                print('\nCalled DB Depreciation!\n')
                 DBDepreciation()
+                running = False  
+#~~~~~~~~~~~~~~~~~~~~ANNUITIES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            if fnc ==81:
+                print('\nCalled  Annuity - Sink Fund Factor!\n')
+                SinkFundFactor()
+                running = False
+            if fnc ==82:
+                print('\nCalled  Annuity - Uni Series Comp Amount Factor!\n')
+                UniSeriesCompAF()
+                running = False
+            if fnc ==83:
+                print('\nCalled  Annuity - Capital Recover Factor!\n')
+                CapRecFactor()
+                running = False
+            if fnc ==84:
+                print('\nCalled  Annuity - Equivalent Annual Capital (EAC)\n')
+                CapRecFactor()
+                running = False
+            if fnc ==85:
+                print('\nCalled  Annuity - Series Present Worth Factor!\n')
+                CapRecFactor()
                 running = False
                 
                 
     
-            if fnc ==9:
+            if fnc ==00:
                 print('\nExiting Function!')
                 running = False
     except ValueError:
